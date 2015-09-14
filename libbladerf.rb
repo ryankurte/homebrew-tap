@@ -11,13 +11,11 @@ class Libbladerf < Formula
   depends_on "cmake" => :build
 
   def install
-    cd "host" do
     system "mkdir", "build"
     cd "build" do
-        system "cmake", "..", *std_cmake_args
+        system "cmake", "..", "-DENABLE_HOST_BUILD=1", "-DTAGGED_RELEASE=1", *std_cmake_args
         system "make", "install" 
         end
-    end
  end
 
   test do
